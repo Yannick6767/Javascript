@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stone</title>
+
+    <script>7
+        var on = 0
+    function touchStein() {
+        var username = prompt("Wie lautet dein name?")
+        if (username){
+            alert('Username ist ' + username);
+            if (on == 1) {
+                document.getElementById("SteinImg").src = "img/steinsad.png"
+                on = 0;
+            } else {
+                document.getElementById("SteinImg").src = "img/steinhappy.png"
+                on = 1
+            }
+
+
+        }
+    }
+ 
+</script>
+
+</head>
+
+<body onload="alert('Hier kommt Stoni')">
+    <div style="margin-top:100px; text-align: center;">
+        <img id="SteinImg" src="img/steinsad.png" alt="stein" onclick="touchStein()"/> 
+    </div>
+    
+</body>
+</html>
