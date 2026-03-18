@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output"></div>
+    <script>
+ 
+        function output(wert, name) {
+            let output = document.getElementById(name);
+            output.innerHTML += wert + '<br>'
+        }
+ 
+        function outputschleife(liste) {
+            for (let i = 0; i < liste.length; i++) {
+                output(i + " " + liste[i], 'output');
+            }
+            output('<br>', 'output');
+        }
+ 
+        let schueler = ['Hasan', 'Dilsad', 'Emir', 'Yannick', 'Matteo', 'Yigit', 'Melih', 'Salih'];
+        outputschleife(schueler);
+        schueler.sort();
+        outputschleife(schueler);
+        schueler.reverse();
+        outputschleife(schueler);
+        schueler.push('Tim');
+        outputschleife(schueler);
+        schueler.shift();
+        outputschleife(schueler);
+ 
+    </script>
+</body>
+</html>
