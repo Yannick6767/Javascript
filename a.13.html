@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+ 
+<body>
+    <h1>Liste verwalten</h1>
+    <input type="text" id="itemInput" placeholder="Neues Element hinzufügen">
+    <button onclick="addItem()">Hinzufügen</button>
+    <div id="itemContainer"></div>
+ 
+    <script>
+        let werte = [];
+ 
+        function addItem() {
+            let text = document.getElementById("itemInput").value;
+            if (text === "") return;
+ 
+            werte.push(text);
+            anzeigen();
+            document.getElementById("itemInput").value = "";
+        }
+        function anzeigen() {
+            let container = document.getElementById("itemContainer");
+            container.innerHTML = "";
+ 
+            for (let i = 0; i < werte.length; i++) {
+                container.innerHTML +=
+                    "<div>" + werte[i] +
+                    " <button onclick='loeschen(" + i + ")'>Löschen</button></div>";
+            }
+        }
+        function loeschen(index) {
+            werte.splice(index, 1);
+            anzeigen();
+        }
+    </script>
+</body>
+ 
+</html>
