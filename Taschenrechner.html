@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="de">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste mit Hinzufügen und Entfernen (innerHTML)</title>
+ 
+    <style>
+        .even {
+            background-color: lightgray;
+        }
+ 
+        .odd {
+            background-color: red;
+        }
+    </style>
+</head>
+ 
+<body>
+    <h1>Liste verwalten</h1>
+ 
+    <input type="number" id="eingabe" placeholder="Wert eingeben...">
+ 
+    <select id="option">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="quad">^2</option>
+    </select>
+ 
+    <select id="ausgabeoption" onclick="changeAusgabe()">
+        <option value="1">text</option>
+        <option value="2">tabelle</option>
+        <option value="3">paragraf</option>
+    </select>
+ 
+    <button onclick="calc()">berechnen</button>
+ 
+    <div id="liste"></div>
+ 
+    <script>
+        let werte = [];
+        let summe = 0;
+        let auswahloption = 1;
+ 
+        function calc() {
+            let eingabewert = parseFloat(document.getElementById("eingabe").value);
+            let operator = document.getElementById("option").value;
+ 
+            switch (operator) {
+                case "+":
+                    summe += eingabewert;
+                    break;
+                case "-":
+                    summe -= eingabewert;
+                    break;
+                case "*":
+                    summe *= eingabewert;
+                    break;
+                case "quad":
+                    summe = eingabewert * eingabewert;
+                    break;
+                case "/":
+                    if (eingabewert === 0) {
+                        alert("Division durch Null ist nicht erlaubt.");
+                        return;
+                    }
+                    summe /= eingabewert;
+                    break;
+            }
+ 
+            werte.push(operator);
+            werte.push(eingabewert);
+            werte.push(" = " + summe);
+ 
+            listeAktualisieren(document.getElementById("ausgabeoption").value);
+        }
+ 
+        function changeAusgabe() {
+            auswahloption = document.getElementById("ausgabeoption").value;
+            listeAktualisieren(auswahloption);
+        }
+ 
+        function listeAktualisieren(option) {
+            document.getElementById("liste").innerHTML = "";
+ 
+            for (let i = 0; i < werte.length; i++) {
+                switch (option) {
+                    case "1":
+                        document.getElementById("liste").innerHTML += werte[i] + "<br>";
+                        break;
+ 
+                    case "2":
+                        if (i % 2 == 0) {
+                            document.getElementById("liste").innerHTML += "<p class='even'>" + werte[i] + "</p>";
+                        } else {
+                            document.getElementById("liste").innerHTML += "<p class='odd'>" + werte[i] + "</p>";
+                        }
+                        break;
+ 
+                    case "3":
+                        document.getElementById("liste").innerHTML += "<p>" + werte[i] + "</p>";
+                        break;
+                }
+ 
+                console.log(werte[i]);
+            }
+        }
+    </script>
+</body>
+ 
+</html>
