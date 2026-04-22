@@ -3,15 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Einkaufsliste</title>
 </head>
+
 <body>
-    <h1>Aufgabe erstellen</h1>
-    <div id="taskList"></div>
-    <script>
-       
+    <h1>Einkaufsliste</h1>
+
+    <input id="itemInput" type="text" placeholder="Essen eingeben">
+<button onclick="addItem()">Hinzufügen</button> 
+
+<ul id="list"></ul>
+
+<script >
+
+let einkaufsliste = []; // Speichert alle einträge
+
+function addItem() { // tut eingabe hinzufügen (in Array)
+  let input = document.getElementById("itemInput"); 
+  let text = input.value.trim(); 
+
+  if (text === "") return;
+
+  // In Array hinten anfügen
+  einkaufsliste.push(text);
+
+  // Liste neu anzeigen und hängt buttoms an
+  renderList();
+
+  input.value = "";
+}
+
+function renderList() {
+  let ul = document.getElementById("list"); // holt ul
+  ul.innerHTML = ""; // Liste leeren
+
+  // Jeden Eintrag aus dem Array anzeigen
+  einkaufsliste.forEach((item, index) => {
+    let li = document.createElement("li");
+    li.textContent = item;
+
+    // Wichtig-Button
+    let importantBtn = document.createElement("button");
+    importantBtn.textContent = "Wichtig";
+    importantBtn.onclick = () => li.style.fontWeight = "bold";
+
+    // Löschen-Button
+    let deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Löschen";
+    deleteBtn.onclick = () => {
+      einkaufsliste.splice(index, 1); // <-- Aus Array löschen
+      renderList(); // Liste neu anzeigen
+    };
+
+    li.appendChild(importantBtn);
+    li.appendChild(deleteBtn);
+
+    ul.appendChild(li);
+  });
+}
 
 
-    </script>
+
+
+
+
+
+
+
+
+    
+</script>
+
+    
 </body>
 </html>
