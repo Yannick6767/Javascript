@@ -20,44 +20,37 @@ let einkaufsliste = []; // Speichert alle einträge
 
 function addItem() { // tut eingabe hinzufügen (in Array)
   let input = document.getElementById("itemInput"); 
-  let text = input.value.trim(); 
+  let text = input.value.trim(); //holt den Text aus dem Eingabefeld.
 
-  if (text === "") return;
+  if (text === "") return; //Wenn das Eingabefeld leer ist, dann brich die Funktion sofort ab.
 
   // In Array hinten anfügen
-  einkaufsliste.push(text);
+  einkaufsliste.push(text); 
 
-  // Liste neu anzeigen und hängt buttoms an
+  // Liste neu anzeigen 
   renderList();
 
-  input.value = "";
+  input.value = ""; //Eingabefeld wird geleert.
 }
 
-function renderList() {
-  let ul = document.getElementById("list"); // holt ul
+function renderList() { //Diese Funktion zeigt die Liste im Browser an.
+  let ul = document.getElementById("list"); 
   ul.innerHTML = ""; // Liste leeren
 
-  // Jeden Eintrag aus dem Array anzeigen
+  // Jeden Eintrag aus dem Array durchgehen
   einkaufsliste.forEach((item, index) => {
     let li = document.createElement("li");
     li.textContent = item;
-
-    // Wichtig-Button
-    let importantBtn = document.createElement("button");
-    importantBtn.textContent = "Wichtig";
-    importantBtn.onclick = () => li.style.fontWeight = "bold";
 
     // Löschen-Button
     let deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Löschen";
     deleteBtn.onclick = () => {
-      einkaufsliste.splice(index, 1); // <-- Aus Array löschen
+      einkaufsliste.splice(index, 1); // Aus Array löschen
       renderList(); // Liste neu anzeigen
     };
-
-    li.appendChild(importantBtn);
+    // Die Buttons werden unter das jeweilige Listenelement gehängt.
     li.appendChild(deleteBtn);
-
     ul.appendChild(li);
   });
 }
