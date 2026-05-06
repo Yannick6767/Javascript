@@ -18,7 +18,7 @@
 
 let einkaufsliste = []; // Speichert alle einträge
 
-function addItem() { // tut eingabe hinzufügen (in Array)
+function addItem() { // tut eingabe hinzufügen 
   let input = document.getElementById("itemInput"); 
   let text = input.value.trim(); //holt den Text aus dem Eingabefeld.
 
@@ -49,21 +49,11 @@ function renderList() { //Diese Funktion zeigt die Liste im Browser an.
       einkaufsliste.splice(index, 1); // Aus Array löschen
       renderList(); // Liste neu anzeigen
     };
-    // Die Buttons werden unter das jeweilige Listenelement gehängt.
+    // Button
     li.appendChild(deleteBtn);
     ul.appendChild(li);
   });
 }
-
-
-
-
-
-
-
-
-
-
     
 </script>
 
