@@ -42,14 +42,22 @@ function renderList() { //Diese Funktion zeigt die Liste im Browser an.
     let li = document.createElement("li");
     li.textContent = item;
 
+      // Wichtig-Button
+        let importantBtn = document.createElement("button");
+        importantBtn.textContent = "Wichtig";
+        importantBtn.onclick = () => {
+          li.style.fontWeight = "bold"; // wenn man drauf drückt wird der Text fett
+        };
+
     // Löschen-Button
-    let deleteBtn = document.createElement("button");
+    let deleteBtn = document.createElement("button"); 
     deleteBtn.textContent = "Löschen";
     deleteBtn.onclick = () => {
       einkaufsliste.splice(index, 1); // Aus Array löschen
       renderList(); // Liste neu anzeigen
     };
     // Button
+    li.appendChild(importantBtn);
     li.appendChild(deleteBtn);
     ul.appendChild(li);
   });
